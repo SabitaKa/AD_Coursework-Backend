@@ -34,6 +34,14 @@ namespace AD_Coursework.Services
 
             var activeDiscounts = await _bookRepository.GetActiveDiscountsAsync(currentDate);
 
+            // Debug logging
+            Console.WriteLine($"Fetching books page {page} at {currentDate}");
+            Console.WriteLine($"Found {activeDiscounts.Count()} active discounts");
+            foreach (var discount in activeDiscounts)
+            {
+                Console.WriteLine($"Discount: BookId={discount.BookId}, Percentage={discount.DiscountPercentage}, Start={discount.StartDate}, End={discount.EndDate}");
+            }
+
             var bookDtos = books.Select(book =>
             {
                 var dto = new BookDto
@@ -62,6 +70,7 @@ namespace AD_Coursework.Services
                 if (activeDiscount != null)
                 {
                     dto.DiscountPercentage = activeDiscount.DiscountPercentage;
+                    Console.WriteLine($"Applied discount {activeDiscount.DiscountPercentage}% to book {book.Id} ({book.Title})");
                 }
 
                 return dto;
@@ -78,6 +87,14 @@ namespace AD_Coursework.Services
             var currentDate = DateTime.UtcNow;
 
             var activeDiscounts = await _bookRepository.GetActiveDiscountsAsync(currentDate);
+
+            // Debug logging
+            Console.WriteLine($"Fetching book {id} at {currentDate}");
+            Console.WriteLine($"Found {activeDiscounts.Count()} active discounts");
+            foreach (var discount in activeDiscounts)
+            {
+                Console.WriteLine($"Discount: BookId={discount.BookId}, Percentage={discount.DiscountPercentage}, Start={discount.StartDate}, End={discount.EndDate}");
+            }
 
             var isPurchased = await _context.OrderItems
                 .AnyAsync(oi => oi.BookId == id && oi.Order.UserId == userId);
@@ -116,6 +133,11 @@ namespace AD_Coursework.Services
             if (activeDiscount != null)
             {
                 bookDto.DiscountPercentage = activeDiscount.DiscountPercentage;
+                Console.WriteLine($"Applied discount {activeDiscount.DiscountPercentage}% to book {book.Id}");
+            }
+            else
+            {
+                Console.WriteLine($"No active discount found for book {book.Id}");
             }
             return bookDto;
         }

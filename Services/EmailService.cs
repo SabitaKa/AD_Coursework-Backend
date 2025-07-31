@@ -36,9 +36,10 @@ namespace AD_Coursework.Services.Utilities
             var emailBody = $@"
                 <html>
                 <body>
-                    <h1>Order Confirmation</h1>
-                    <p>Dear Valued Customer,</p>
-                    <p>Thank you for your order with our bookstore!</p>
+                    <h1>Order Confirmation Notice</h1>
+                    <p>Dear Customer,</p>
+                    <p>We appreciate your recent order with our bookstore.</p>
+
                     
                     <h2>Order Summary</h2>
                     <table border='1' cellpadding='5' cellspacing='0'>
@@ -85,12 +86,12 @@ namespace AD_Coursework.Services.Utilities
                         </tr>"))}
                     </table>
                     
-                    <h2>Pickup Information</h2>
-                    <p>Please bring this claim code and your membership ID to the store to pick up your order.</p>
+                    <h2>Pickup Details</h2>
+                    <p>Show this claim code along with your membership ID at the store to collect your order.</p>
                     <p><strong>Claim Code:</strong> {order.ClaimCode}</p>
                     
-                    <p>If you have any questions, please contact our customer service.</p>
-                    <p>Thank you for shopping with us!</p>
+                    <p>If you have any questions regarding this then, please contact our customer service.</p>
+                    <p>Thank you for Choosing us!</p>
                     <p>Best regards,<br/>{_fromName}</p>
                 </body>
                 </html>
