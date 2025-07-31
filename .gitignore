@@ -1,0 +1,16 @@
+# Ignore all files in the bin directory
+bin/
+
+# Ignore all files in the obj directory
+obj/
+
+# Ignore all files in the .vscode directory
+.vscode/
+
+# Ignore all files in the .idea directory
+.idea/
+
+# Ignore all files in the .vs directory
+.vs/
+
+
